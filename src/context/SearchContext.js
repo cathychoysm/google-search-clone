@@ -35,12 +35,7 @@ export const SearchContextProvider = ({ children }) => {
   const [error, setError] = useState(null);
 
   // API URL
-  // TODO: integrate firebase secret key
-  const apiKey = "";
-  const searchEngineKey = "";
-
-  const searchTypeSpecified = searchType === "image" ? "&searchType=image" : "";
-  const apiUrl = `https://www.googleapis.com/customsearch/v1?key=${apiKey}&cx=${searchEngineKey}&q=${searchQuery}${searchTypeSpecified}&safe=active`;
+  const apiUrl = `https://us-central1-search-clone-69618.cloudfunctions.net/searchAPI?searchQuery=${searchQuery}&searchType=${searchType}`;
 
   // 1. Use path change to trigger search params state update
   useEffect(() => {
@@ -60,19 +55,22 @@ export const SearchContextProvider = ({ children }) => {
     async function fetchData() {
       try {
         const result = await fetch(apiUrl).then((response) => response.json());
-        result.hasOwnProperty("items")
-          ? setSearchResult({
-              resultType: result.queries.request[0].searchType ?? "",
-              result: result.items,
-            })
-          : result.error.code === 429
-          ? setError(
-              "Quota exceeded for quota metric 'Queries' and limit 'Queries per day' of service 'customsearch.googleapis.com'"
-            )
-          : setError(result.error.message);
+        console.log(result);
+        if (result.hasOwnProperty("items")) {
+          setSearchResult({
+            resultType: result.queries.request[0].searchType ?? "",
+            result: result.items,
+          });
+          setError(null);
+        } else if (result.error.code === 429) {
+          setError(
+            "Quota exceeded for quota metric 'Queries' and limit 'Queries per day' of service 'customsearch.googleapis.com'"
+          );
+        } else {
+          setError(result.error.message);
+        }
       } catch (err) {
         setError(err.message);
-        console.log(err.message);
       } finally {
         setIsLoading(false);
       }

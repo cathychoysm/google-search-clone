@@ -11,24 +11,24 @@ export default function LoadMore() {
   const handleClick = async () => {
     setIsLoadingMore(true);
     try {
-      const result = await fetch(`${apiUrl}&start=${startIndex}`, {
-        headers: {
-          "x-api-key":
-            "PMAK-66157db5be72290001db2387-b5bd310575bed82fac16d614517c92da2e",
-        },
-      }).then((response) => response.json());
-      result.hasOwnProperty("items")
-        ? setSearchResult((prevItems) => {
-            return {
-              resultType: prevItems.resultType,
-              result: prevItems.result.concat(result.items),
-            };
-          })
-        : result.error.code === 429
-        ? setError(
-            "Quota exceeded for quota metric 'Queries' and limit 'Queries per day' of service 'customsearch.googleapis.com'"
-          )
-        : setError(result.error.message);
+      const result = await fetch(`${apiUrl}&start=${startIndex}`).then(
+        (response) => response.json()
+      );
+      if (result.hasOwnProperty("items")) {
+        setSearchResult((prevItems) => {
+          return {
+            resultType: prevItems.resultType,
+            result: prevItems.result.concat(result.items),
+          };
+        });
+        setError(null);
+      } else if (result.error.code === 429) {
+        setError(
+          "Quota exceeded for quota metric 'Queries' and limit 'Queries per day' of service 'customsearch.googleapis.com'"
+        );
+      } else {
+        setError(result.error.message);
+      }
     } catch (err) {
       setError(err.message);
     } finally {
