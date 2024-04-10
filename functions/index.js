@@ -7,8 +7,8 @@ const searchEngineKey = defineSecret("SEARCH_ENGINE_KEY");
 exports.searchAPI = functions.https.onRequest(
     {secrets: [apiKey, searchEngineKey],
       cors: [
-        "search-clone-69618.web.app",
-        "search-clone-69618.firebaseapp.com"]},
+        /search-clone-69618\.web\.app$/,
+        /search-clone-69618\.firebaseapp\.com$/]},
     async (request, response) => {
       const searchType = request.query.searchType;
       const searchQuery = request.query.searchQuery;

@@ -55,7 +55,6 @@ export const SearchContextProvider = ({ children }) => {
     async function fetchData() {
       try {
         const result = await fetch(apiUrl).then((response) => response.json());
-        console.log(result);
         if (result.hasOwnProperty("items")) {
           setSearchResult({
             resultType: result.queries.request[0].searchType ?? "",
