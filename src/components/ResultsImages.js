@@ -67,7 +67,9 @@ export default function ResultsImages() {
               <ChevronLeftIcon />
             </IconButton>
             <IconButton
-              disabled={cardIndex < searchResult.length - 1 ? false : true}
+              disabled={
+                cardIndex < searchResult.result.length - 1 ? false : true
+              }
               onClick={() => {
                 setCardIndex((prevIndex) => prevIndex + 1);
               }}
@@ -87,9 +89,9 @@ export default function ResultsImages() {
           </Stack>
           <Link
             href={
-              searchResult[cardIndex].image.hasOwnProperty("contextLink")
-                ? searchResult[cardIndex].image.contextLink
-                : searchResult[cardIndex].link
+              searchResult.result[cardIndex].image.hasOwnProperty("contextLink")
+                ? searchResult.result[cardIndex].image.contextLink
+                : searchResult.result[cardIndex].link
             }
             target="_blank"
             rel="noopener"
@@ -97,8 +99,8 @@ export default function ResultsImages() {
           >
             <Box
               component="img"
-              alt={searchResult[cardIndex].title}
-              src={searchResult[cardIndex].link}
+              alt={searchResult.result[cardIndex].title}
+              src={searchResult.result[cardIndex].link}
               backgroundColor="#FFF"
               width={{ xs: "300px", md: "400px" }}
               maxHeight={{ xs: "250px", md: "350px" }}
@@ -108,9 +110,11 @@ export default function ResultsImages() {
           <Stack direction="row" justifyContent="space-between" padding="20px">
             <Link
               href={
-                searchResult[cardIndex].image.hasOwnProperty("contextLink")
-                  ? searchResult[cardIndex].image.contextLink
-                  : searchResult[cardIndex].link
+                searchResult.result[cardIndex].image.hasOwnProperty(
+                  "contextLink"
+                )
+                  ? searchResult.result[cardIndex].image.contextLink
+                  : searchResult.result[cardIndex].link
               }
               target="_blank"
               rel="noopener"
@@ -118,14 +122,16 @@ export default function ResultsImages() {
               color="text.primary"
             >
               <Typography fontSize={{ xs: "18px", md: "20px" }}>
-                {searchResult[cardIndex].title}
+                {searchResult.result[cardIndex].title}
               </Typography>
             </Link>
             <Link
               href={
-                searchResult[cardIndex].image.hasOwnProperty("contextLink")
-                  ? searchResult[cardIndex].image.contextLink
-                  : searchResult[cardIndex].link
+                searchResult.result[cardIndex].image.hasOwnProperty(
+                  "contextLink"
+                )
+                  ? searchResult.result[cardIndex].image.contextLink
+                  : searchResult.result[cardIndex].link
               }
               target="_blank"
               rel="noopener"
