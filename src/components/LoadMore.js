@@ -11,7 +11,7 @@ export default function LoadMore() {
   const handleClick = async () => {
     setIsLoadingMore(true);
     try {
-      const result = await fetch(`${apiUrl}&start=${startIndex}`).then(
+      const result = await fetch(`${apiUrl}&startIndex=${startIndex}`).then(
         (response) => response.json()
       );
       if (result.hasOwnProperty("items")) {
