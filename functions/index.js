@@ -12,9 +12,10 @@ exports.searchAPI = functions.https.onRequest(
     async (request, response) => {
       const searchType = request.query.searchType;
       const searchQuery = request.query.searchQuery;
+      const startIndex = request.query.startIndex ?? 1;
       const searchTypeSpecified =
         searchType === "image" ? "&searchType=image" : "";
-      const apiUrl = `https://www.googleapis.com/customsearch/v1?key=${apiKey.value()}&cx=${searchEngineKey.value()}&q=${searchQuery}${searchTypeSpecified}&safe=active`;
+      const apiUrl = `https://www.googleapis.com/customsearch/v1?key=${apiKey.value()}&cx=${searchEngineKey.value()}&q=${searchQuery}${searchTypeSpecified}&start=${startIndex}&safe=active`;
       try {
         const result = await fetch(apiUrl).then((response) => response.json());
         response.json(result);
