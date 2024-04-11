@@ -5,6 +5,8 @@
 		"JavaScript",
 		"React.js",
 		"Material UI",
-		"Custom Search JSON API"
+		"Custom Search JSON API",
+		"Google Cloud Functions",
+		"Firebase Hosting"
 	]
 }
