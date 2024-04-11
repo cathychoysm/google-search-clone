@@ -17,7 +17,10 @@ Check out the live demo of this project [here](https://search-clone-69618.web.ap
 
 ## Features
 
+![Demo](./demo.gif)
+
 - **Google-like Search Interface**: The project mimics the design and functionality of Google Search.
 - **Custom Search**: Users can enter search queries, and the application fetches relevant search results using the Google Custom Search API.
+- **Search Results**: The search results include both general websites and images, displayed similarly to Google Search.
 - **Light Mode/Dark Mode**: The application offers both light and dark mode options, allowing users to choose their preferred color scheme.
 - **Responsive Design**: The application is responsive and adapts to different screen sizes, ensuring a consistent experience across devices.
