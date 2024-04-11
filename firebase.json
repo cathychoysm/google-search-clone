@@ -29,7 +29,7 @@
 		],
 		"headers": [
 			{
-				"source": "index.html",
+				"source": "https://portfolio-cathychoysm.web.app/",
 				"headers": [
 					{
 						"key": "Access-Control-Allow-Origin",
