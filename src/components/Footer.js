@@ -24,6 +24,7 @@ export default function Footer() {
       backgroundColor="background.footer"
       width="100vw"
       height={{ xs: "200px", md: "155px" }}
+      data-testid="Footer"
     >
       <Typography
         variant="p"
@@ -135,12 +136,14 @@ export default function Footer() {
               backgroundColor: "background.primary",
               boxShadow: `0 1px 6px 0 ${theme.palette.background.search_bar_shadow_hover}`,
             }}
-            modifiers={{
-              name: "offset",
-              options: {
-                offset: [0, 20],
+            modifiers={[
+              {
+                name: "offset",
+                options: {
+                  offset: [0, 20],
+                },
               },
-            }}
+            ]}
           >
             <MenuList>
               <MenuItem

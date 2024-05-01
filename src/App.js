@@ -1,9 +1,11 @@
-import "./App.css";
 import { Route, Routes } from "react-router-dom";
+
 import Home from "./components/Home";
 import Results from "./components/Results";
+
 import { SearchContextProvider } from "./context/SearchContext";
 import useThemeContext from "./context/ThemeContext";
+
 import { ThemeProvider, createTheme, CssBaseline } from "@mui/material";
 import { useMemo } from "react";
 
