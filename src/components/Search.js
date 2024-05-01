@@ -10,7 +10,8 @@ export default function Search() {
 
   return (
     <form
-      onSubmit={() => {
+      onSubmit={(e) => {
+        e.preventDefault();
         navigate(`/results/${input}`);
       }}
     >
@@ -33,6 +34,7 @@ export default function Search() {
             }}
             variant="search"
             disableTouchRipple
+            data-testid="HomeSearchSubmit"
           >
             Google Search
           </Button>
